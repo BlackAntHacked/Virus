@@ -3,102 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warning! Danger Ahead</title>
+    <title>Warning - Restarting</title>
     <style>
         body {
-            background-color: #f44336; /* Red background for danger */
+            background-color: red;
             color: white;
-            font-family: 'Arial', sans-serif;
             text-align: center;
-            padding: 0;
-            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #progress-container {
+            width: 100%;
+            background-color: #ddd;
+            margin: 20px auto;
+            height: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: green;
         }
 
         h1 {
-            font-size: 5em;
-            color: yellow;
-            text-shadow: 0 0 10px black;
-            animation: blink 1s infinite;
-        }
-
-        h2 {
-            color: black;
-            font-size: 2em;
-            margin: 20px;
+            font-size: 3rem;
+            margin-top: 20px;
         }
 
         p {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: white;
-            margin: 20px;
-            text-shadow: 0 0 5px black;
-        }
-
-        /* Flashing warning */
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Skull and crossbones icon */
-        .skull {
-            font-size: 10em;
-            color: white;
-            margin: 50px;
-        }
-
-        /* Flickering effect for danger text */
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                opacity: 1;
-            }
-            20%, 24%, 55% {
-                opacity: 0;
-            }
-        }
-
-        .danger-text {
-            animation: flicker 2s infinite;
-            color: red;
-            font-size: 3em;
-        }
-
-        /* Red alert borders */
-        .border-alert {
-            border: 5px solid red;
-            padding: 20px;
-            margin: 20px;
-            background-color: black;
-        }
-
-        /* Warning sounds on load */
-        audio {
-            display: none;
+            font-size: 1.5rem;
         }
     </style>
 </head>
 <body>
-    <div class="border-alert">
-        <h1>WARNING!</h1>
-        <h2>MALWARE DETECTED!</h2>
-        <p>DO NOT ATTEMPT TO LOGIN. YOUR DATA IS AT RISK!</p>
-        <p>This page has been compromised. Proceed at your own risk.</p>
-    </div>
-    
-    <div class="danger-text">
-        <p>IMMINENT SYSTEM FAILURE!</p>
+
+    <h1>Warning! Restarting in 2 minutes...</h1>
+    <p>Do not close this page!</p>
+
+    <div id="progress-container">
+        <div id="progress-bar"></div>
     </div>
 
-    <div class="skull">
-        &#9760; <!-- Unicode skull and crossbones symbol -->
-    </div>
+    <p id="timer">120 seconds remaining</p>
 
-    <!-- Play a warning sound on load -->
-    <audio autoplay>
-        <source src="alarm.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
+    <script>
+        // Time variables
+        let timeLeft = 120; // 2 minutes in seconds
+        let progressBar = document.getElementById('progress-bar');
+        let timerText = document.getElementById('timer');
+
+        // Update progress bar and timer every second
+        let interval = setInterval(function () {
+            timeLeft--;
+            progressBar.style.width = ((120 - timeLeft) / 120) * 100 + '%';
+            timerText.textContent = timeLeft + ' seconds remaining';
+
+            // If time runs out, simulate a restart by redirecting or closing the page
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                alert("Your system is now restarting...");
+                window.location.href = "https://example.com"; // Redirect to another page (simulate restart)
+                // You could close the tab by using window.close(); but it only works in certain conditions
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
