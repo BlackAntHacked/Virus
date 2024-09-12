@@ -3,21 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warning</title>
+    <title>Warning! Danger Ahead</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #ffdddd;
+            background-color: #f44336; /* Red background for danger */
+            color: white;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            padding: 50px;
+            padding: 0;
+            margin: 0;
         }
+
         h1 {
+            font-size: 5em;
+            color: yellow;
+            text-shadow: 0 0 10px black;
+            animation: blink 1s infinite;
+        }
+
+        h2 {
+            color: black;
+            font-size: 2em;
+            margin: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            margin: 20px;
+            text-shadow: 0 0 5px black;
+        }
+
+        /* Flashing warning */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Skull and crossbones icon */
+        .skull {
+            font-size: 10em;
+            color: white;
+            margin: 50px;
+        }
+
+        /* Flickering effect for danger text */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0;
+            }
+        }
+
+        .danger-text {
+            animation: flicker 2s infinite;
             color: red;
+            font-size: 3em;
+        }
+
+        /* Red alert borders */
+        .border-alert {
+            border: 5px solid red;
+            padding: 20px;
+            margin: 20px;
+            background-color: black;
+        }
+
+        /* Warning sounds on load */
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>Warning!</h1>
-    <p>There is malware. Do not try to log in.</p>
+    <div class="border-alert">
+        <h1>WARNING!</h1>
+        <h2>MALWARE DETECTED!</h2>
+        <p>DO NOT ATTEMPT TO LOGIN. YOUR DATA IS AT RISK!</p>
+        <p>This page has been compromised. Proceed at your own risk.</p>
+    </div>
+    
+    <div class="danger-text">
+        <p>IMMINENT SYSTEM FAILURE!</p>
+    </div>
+
+    <div class="skull">
+        &#9760; <!-- Unicode skull and crossbones symbol -->
+    </div>
+
+    <!-- Play a warning sound on load -->
+    <audio autoplay>
+        <source src="alarm.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 </body>
 </html>
