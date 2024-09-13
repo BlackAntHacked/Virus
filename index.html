@@ -2,72 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warning - Restarting</title>
+    <title>Warning - Security Alert</title>
     <style>
         body {
-            background-color: red;
-            color: white;
-            text-align: center;
+            background-color: #000;
+            color: red;
             font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
         }
-
-        #progress-container {
-            width: 100%;
-            background-color: #ddd;
-            margin: 20px auto;
-            height: 30px;
-            border-radius: 10px;
-            overflow: hidden;
+        .warning-box {
+            border: 3px solid red;
+            padding: 30px;
+            background-color: #111;
         }
-
-        #progress-bar {
-            height: 100%;
-            width: 0%;
-            background-color: green;
-        }
-
         h1 {
-            font-size: 3rem;
-            margin-top: 20px;
+            font-size: 3em;
+            margin-bottom: 20px;
         }
-
         p {
-            font-size: 1.5rem;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .error-code {
+            color: yellow;
+            font-weight: bold;
+            font-size: 2em;
+        }
+        .blink {
+            animation: blink-animation 1s steps(5, start) infinite;
+            -webkit-animation: blink-animation 1s steps(5, start) infinite;
+        }
+        @keyframes blink-animation {
+            to { visibility: hidden; }
+        }
+        @-webkit-keyframes blink-animation {
+            to { visibility: hidden; }
         }
     </style>
+    <script>
+        // Redirect to Google after 5 seconds
+        setTimeout(function(){
+            window.location.href = "https://www.google.com";
+        }, 5000);
+    </script>
 </head>
 <body>
 
-    <h1>Warning! Restarting in 2 minutes...</h1>
-    <p>Do not close this page!</p>
-
-    <div id="progress-container">
-        <div id="progress-bar"></div>
+    <div class="warning-box">
+        <h1 class="blink">!! WARNING !!</h1>
+        <p>Critical Security Alert</p>
+        <p>Your personal data in the computer has been <strong>stolen</strong> by a third party.</p>
+        <p>Windows Defender has <strong>BLOCKED</strong> this site for your protection.</p>
+        <p class="error-code">ERROR: 00.02404</p>
+        <p><strong>Hard drive</strong> will be <strong>ERASED</strong> in <span class="blink">10 seconds</span>.</p>
+        <p>Be extremely cautious when using this computer. Unauthorized access has been detected!</p>
+        <p>Immediate action required: Do not use the <strong>forbidden number</strong>!</p>
+        <p class="blink">System Failure Imminent...</p>
+        <p>All sensitive files, photos, and passwords may be deleted soon!</p>
+        <p><strong>WARNING:</strong> Shutdown is irreversible!</p>
     </div>
 
-    <p id="timer">120 seconds remaining</p>
-
-    <script>
-        // Time variables
-        let timeLeft = 120; // 2 minutes in seconds
-        let progressBar = document.getElementById('progress-bar');
-        let timerText = document.getElementById('timer');
-
-        // Update progress bar and timer every second
-        let interval = setInterval(function () {
-            timeLeft--;
-            progressBar.style.width = ((120 - timeLeft) / 120) * 100 + '%';
-            timerText.textContent = timeLeft + ' seconds remaining';
-
-            // If time runs out, simulate a restart by redirecting or closing the page
-            if (timeLeft <= 0) {
-                clearInterval(interval);
-                alert("Your system is now restarting...");
-                window.location.href = "https://example.com"; // Redirect to another page (simulate restart)
-                // You could close the tab by using window.close(); but it only works in certain conditions
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
